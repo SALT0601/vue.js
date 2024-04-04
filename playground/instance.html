@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Getting Started</title>
+    <title>Document</title>
   </head>
   <body>
-    <div id="app">{{ message }}</div>
+    <div id="app"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
-      new Vue({
+      var vm = new Vue({
+        //이 바디태그 안에서 앱이라고 하는 아이디를 가진 태그를 찾아서 인스턴스를 붙이겠다고 하는 의미
         el: "#app",
         data: {
-          message: "Hello Vue.js",
+          message: "hi",
         },
       });
     </script>
