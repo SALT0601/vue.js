@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Axios</title>
+  </head>
+  <body>
+    <div id="app">
+      <button v-on:click="getData">get user</button>
+      <div>{{ users }}</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          users: [],
+        },
+        methods: {
+          getData: function () {
+            // axios 호출하기 전에 디스는 기본적인 인스턴스라든지 컴포넌트를 바라보는 디스
+            // 그래서 여기서 this 담아서 axios 아래에서 접근하는 방법 씀
+            var vm = this;
+            axios
+              //RestAPI 샘플 주소에서 데이터 받아옴
+              .get("https://jsonplaceholder.typicode.com/users/")
+              //성공시
+              .then(function (response) {
+                console.log(response.data);
+                //axios 아래의 디스는 비동기 처리를 했을 때 자연스럽게 실행 컨텍스트가 바뀌면서 디스에 대한 내용도 바뀜
+                vm.users = response.data;
+              })
+              //실패시
+              .catch(function (error) {
+                console.log(error);
+              });
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

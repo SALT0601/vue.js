@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">{{ num }}</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          num: 10,
+        },
+        // 벨리데이션이라든지 간단한 텍스트 연산 쪽
+        computed: {
+          doubleNum: function () {
+            return this.num * 2;
+          },
+        },
+        //무거운 로직 - 매번 실행되기 무거운 로직 -> 특히 데이터 요청
+        //데이터 요청을 하실 때도 메서드에 있는 내용들을 엮어 주시면 되게 좋을 것
+        watch: {
+          num: function (newValue, oldValue) {
+            this.fetchUserByNumber(newValue);
+          },
+        },
+        methods: {
+          fetchUserByNumber: function (num) {
+            // console.log(num);
+            axios.get(num);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
